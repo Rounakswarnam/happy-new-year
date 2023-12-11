@@ -1,0 +1,698 @@
+<html>
+    <head>
+        <title>Happy New Year</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');  
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    overflow: hidden; 
+    position: fixed;
+    font-family: 'Nova Square', sans-serif;
+    background: #081b29;
+}
+
+.time {
+    background: #081b29;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.7s;
+}
+
+.time.active {
+    opacity: 1;
+    transition: 0.7s;
+}
+
+.time .motion {
+    position: absolute;
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: transparent;
+    opacity: 0;
+    transition: 0.5s;
+}
+.time.active .motion {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.motion .bubble {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    box-shadow: 0 0 20px currentColor, 0 0 50px currentColor, 0 0 80px currentColor, 0 0 120px currentColor;
+    animation: bubbles linear;
+    transform: translateY(-10vh) scale(1.3);
+}
+
+@keyframes bubbles {
+    0% {
+        transform: translateY(110vh) scale(0.4);
+    }
+    100% {
+        transform: translateY(-10vh) scale(1.3);
+    }
+}
+
+.time .title {
+    position: absolute;
+    pointer-events: none;
+    top: 50px;
+    font-size: 90px;
+    font-weight: 1000;
+    pointer-events: none;
+    width: 100%; 
+    text-align: center;
+}
+
+.title .cont {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cont .tpp {
+    text-shadow:  0 0 40px cyan, 0 0 80px cyan, 0 0 120px #081b29;
+    transform: translateY(-300px);
+    opacity: 0;
+    transition: 0.7s;
+    transition-delay: calc(0.15s * var(--l));
+    color: white;
+}
+
+.cont.active .tpp {
+    transform: translateY(0);
+    opacity: 1;
+    transition: 0.7s;
+    transition-delay: calc(0.15s * var(--i));
+}
+
+.time .tt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 1100px;
+    height: 180px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.tt .Box {
+    height: 180px;
+    width: 180px;
+    border-radius: 30px;
+    background: #081b29;
+    box-shadow:  50px 50px 64px #030b10, -50px -50px 64px #0d2b42;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(300px);
+    transition: 0.7s;
+    opacity: 0;
+    transition-delay: calc(0.15s * var(--l));
+}
+
+.tt.active .Box{
+    transform: translateY(0);
+    transition: 0.7s;
+    opacity: 1;
+    transition-delay: calc(0.15s * var(--i));
+}
+
+.Box .text {
+    position: absolute;
+    top: 8px;
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Nova Square', sans-serif;
+    pointer-events: none;
+}
+
+.Box .num {
+    position: absolute;
+    transform: translateY(15px);
+    color: white;
+    font-size: 70px;
+    font-weight: 1000;
+    font-family: 'Nova Square', sans-serif;
+    pointer-events: none;
+}
+
+
+.celebration {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow: hidden; 
+}
+
+.celebration.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.celebration #canvas {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.new {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    pointer-events: none;
+    width: 875px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-column-gap: 25px;
+    grid-row-gap: 0;
+}
+
+.new .gg {
+    height: 200px;
+    width: 200px;
+    border-radius: 40px;
+    color: white;
+    font-size: 240px;
+    font-weight: 1000;
+    font-family: 'Nova Square', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: cyan;
+    text-shadow: 0 0 60px cyan, 0 0 120px cyan, 0 0 180px purple;
+}
+
+.uqi {
+    height: 200px;
+    width: 200px;
+    border-radius: 40px;
+    color: cyan;
+    font-size: 240px;
+    font-weight: 1000;
+    font-family: 'Nova Square', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #008080;
+    text-shadow: none;
+    transform: translateY(-40vh);
+    opacity: 0;
+    animation: none;
+}
+
+.uqi.normal {
+    color: cyan;
+    transform: translateY(0);
+    text-shadow: 0 0 60px cyan, 0 0 120px cyan, 0 0 180px purple;
+    opacity: 1;
+}
+
+.uqi.active {
+    animation: uniquuu 4s;
+}
+
+.uqii {
+    height: 200px;
+    width: 200px;
+    border-radius: 40px;
+    color: white;
+    font-size: 240px;
+    font-weight: 1000;
+    font-family: 'Nova Square', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: cyan;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% + 320px),-50%);
+    text-shadow: 0 0 60px cyan, 0 0 120px cyan, 0 0 180px purple;
+}
+
+.uqii.normal {
+    color: #008080;
+    transform: translate(calc(-50% + 320px),calc(-50% + 90vh));
+    text-shadow: none;
+}
+
+.uqii.active {
+    animation: unique 4s;
+}
+
+@keyframes uniquuu {
+    0% {
+        color: cyan;
+        transform: translate(0,0);
+        text-shadow: 0 0 60px cyan, 0 0 120px cyan, 0 0 180px purple;
+        opacity: 1;
+    }
+    100% {
+        color: #008080;
+        transform: translateY(-40vh);
+        text-shadow: none;
+        opacity: 0;
+    }
+}
+
+@keyframes unique {
+    0% {
+        color: #008080;
+        transform: translate(calc(-50% + 320px),calc(-50% + 90vh));
+        text-shadow: none;
+    }
+    90% {
+        color: #008080;
+        transform: translate(calc(-50% + 320px),-50%);
+        text-shadow: none;
+    }
+    100% {
+        color: cyan;
+        transform: translate(calc(-50% + 320px),-50%);
+        text-shadow: 0 0 60px cyan, 0 0 120px cyan, 0 0 180px purple;
+    }
+    
+}
+
+.celebration .dates {
+    opacity: 1;
+    pointer-events: none;
+    transition: 0.7s;
+    transition-delay: 8s;
+}
+
+.celebration.active .dates {
+    opacity: 0;
+    transition: 0.7s;
+    transition-delay: 8s;
+}
+
+.c-Text {
+    top: 100px;
+    left: 0;
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 200px;
+    opacity: 1;
+}
+
+.c-Text .one {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 1100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.one .abc {
+    pointer-events: none;
+    font-size: 70px;
+    color: white;
+    text-shadow: 0 0 20px yellow, 0 0 40px orange, 0 0 60px red;
+    transform: translateX(900px);
+    transition: opacity 0.7s, transform 0.7s;
+    transition-delay: calc(0.15s * var(--a));
+    opacity: 0;
+}
+
+.one.active .abc {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.7s, transform 0.7s;
+    transition-delay: calc(0.15s * var(--a));
+}
+
+.one .abc.bla {
+    opacity: 0;
+}
+
+.c-Text .two {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 1100px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.two .xyz {
+    pointer-events: none;
+    font-size: 110px;
+    color: white;
+    text-shadow: 0 0 20px yellow, 0 0 40px orange, 0 0 60px red;
+    opacity: 0;
+    transform: translateX(-800px);
+    transition: opacity 0.7s, transform 0.7s;
+    transition-delay: calc(0.15s * var(--a));
+}
+
+.two.active .xyz {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.7s, transform 0.7s;
+    transition-delay: calc(0.15s * var(--a));
+}
+
+            
+        </style>
+    </head>
+    <body>
+        <div class="time">
+            <div class="title">
+              <div class="cont">
+                <div class="tpp" style="--i:1; --l:17;">R</div>
+                <div class="tpp" style="--i:2; --l:16;">e</div>
+                <div class="tpp" style="--i:3; --l:15;">m</div>
+                <div class="tpp" style="--i:4; --l:14;">a</div>
+                <div class="tpp" style="--i:5; --l:13;">i</div>
+                <div class="tpp" style="--i:6; --l:12;">n</div>
+                <div class="tpp" style="--i:7; --l:11;">i</div>
+                <div class="tpp" style="--i:8; --l:10;">n</div>
+                <div class="tpp" style="--i:9; --l:9;">g</div>
+                <div class="tpp" style="--i:10; --l:8;"> </div>
+                <div class="tpp" style="--i:11; --l:7;">T</div>
+                <div class="tpp" style="--i:12; --l:6;">i</div>
+                <div class="tpp" style="--i:13; --l:5;">m</div>
+                <div class="tpp" style="--i:14; --l:4;">e</div>
+                <div class="tpp" style="--i:15; --l:3;">.</div>
+                <div class="tpp" style="--i:16; --l:2;">.</div>
+                <div class="tpp" style="--i:17; --l:1;">.</div>
+              </div>
+            </div>
+            <div class="tt">
+                <div class="Box" style="--i:18; --l:22;">
+                    <span class="text">Months</span>
+                    <div class="months num">0</div>
+                </div>
+                <div class="Box" style="--i:19; --l:21;">
+                    <span class="text">Days</span>
+                    <div class="days num">0</div>
+                </div>
+                <div class="Box" style="--i:20; --l:20;">
+                    <span class="text">Hours</span>
+                    <div class="hours num">0</div>
+                </div>
+                <div class="Box" style="--i:21; --l:19;">
+                    <span class="text">Minutes</span>
+                    <div class="minutes num">0</div>
+                </div>
+                <div class="Box" style="--i:22; --l:18;">
+                    <span class="text">Seconds</span>
+                    <div class="seconds num">0</div>
+                </div>
+            </div>
+            <div class="motion"></div>
+        </div>
+        <div class="celebration">
+            <canvas id="Canvas"></canvas>
+            <div class="dates">
+                <div class="new">
+                    <div class="gg">2</div>
+                    <div class="gg">0</div>
+                    <div class="gg">2</div>
+                    <div class="uqi normal">3</div>
+                </div> 
+                <div class="uqii normal">4</div>         
+            </div> 
+            <div class="c-Text">
+                <div class="one">
+                    <div class="abc" style="--a:0;">H</div>
+                    <div class="abc" style="--a:1;">a</div>
+                    <div class="abc" style="--a:2;">p</div>
+                    <div class="abc" style="--a:3;">p</div>
+                    <div class="abc" style="--a:4;">y</div>
+                    <div class="abc bla" style="--a:5;">-</div>
+                    <div class="abc" style="--a:6;">N</div>
+                    <div class="abc" style="--a:7;">e</div>
+                    <div class="abc" style="--a:8;">w</div>
+                    <div class="abc bla" style="--a:9;">-</div>
+                    <div class="abc" style="--a:10;">Y</div>
+                    <div class="abc" style="--a:11;">e</div>
+                    <div class="abc" style="--a:12;">a</div>
+                    <div class="abc" style="--a:13;">r</div>
+                </div>
+                <div class="two">
+                    <div class="xyz" style="--a:20;">2</div>
+                    <div class="xyz" style="--a:19;">0</div>
+                    <div class="xyz" style="--a:18;">2</div>
+                    <div class="xyz" style="--a:17;">4</div>
+                </div>
+            </div> 
+        </div>
+        <script>
+function updateCountdown() {
+    const newYear = new Date("2024-01-01T00:00:00+05:30"); // formate --> year:month:date(T)hour:min:sec+(05:30) [dont change the bracket objects] , [time in 24 hour formate and with zeros in single digits]
+    const now = new Date();
+    const timeDifference = newYear - now;
+    if (timeDifference <= 0) {
+        const celebration = document.querySelector(".celebration");
+        const uqi = document.querySelector(".uqi");
+        const uqii = document.querySelector(".uqii");
+        const one = document.querySelector(".one");
+        const two = document.querySelector(".two");
+        
+        const p2 = document.querySelector(".time");
+        const p2ele = document.querySelector(".tt");
+        const title = document.querySelector(".cont");
+        
+        p2ele.classList.remove('active');
+        title.classList.remove('active');
+        
+        setTimeout(function() {
+            p2.classList.remove('active');
+        }, 4000);
+        
+        setTimeout(function() {
+            celebration.classList.add('active');
+        }, 4500);
+        setTimeout(function() {
+            uqi.classList.remove('normal');
+            uqii.classList.remove('normal');
+            
+            uqi.classList.add('active');
+            uqii.classList.add('active');
+        }, 6500);
+        setTimeout(function() {
+            one.classList.add('active');
+            two.classList.add('active');
+        }, 14500)
+        
+        clearInterval(intervalId);
+    } else {
+        const seconds = Math.floor(timeDifference / 1000) % 60;
+        const minutes = Math.floor(timeDifference / (1000 * 60)) % 60;
+        const hours = Math.floor(timeDifference / (1000 * 60 * 60)) % 24;
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) % 30;
+        const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+        document.querySelector('.months').innerText = months;
+        document.querySelector('.days').innerText = days;
+        document.querySelector('.hours').innerText = hours;
+        document.querySelector('.minutes').innerText = minutes;
+        document.querySelector('.seconds').innerText = seconds;
+    }
+}
+const intervalId = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+const p2 = document.querySelector(".time");
+const p2ele = document.querySelector(".tt");
+const title = document.querySelector(".cont");
+
+window.onload = function() {
+  setTimeout(function() {
+      p2.classList.add('active');
+      p2ele.classList.add('active');
+      title.classList.add('active');
+  }, 3000); 
+};
+
+var c = document.getElementById("Canvas");
+var ctx = c.getContext("2d");
+
+var cwidth, cheight;
+var shells = [];
+var pass= [];
+
+var colors = ['#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', '#B2FF59', '#EEFF41', '#FFFF00', '#FFD740', '#FFAB40', '#FF6E40'];
+
+window.onresize = function() { reset(); }
+reset();
+function reset() {
+
+  cwidth = window.innerWidth;
+	cheight = window.innerHeight;
+	c.width = cwidth;
+	c.height = cheight;
+}
+
+function newShell() {
+
+  var left = (Math.random() > 0.5);
+  var shell = {};
+  shell.x = (1*left);
+  shell.y = 0.7;
+  shell.xoff = (0.01 + Math.random() * 0.007) * (left ? 1 : -1);
+  shell.yoff = 0.01 + Math.random() * 0.007;
+  shell.size = Math.random() * 6 + 3;
+  shell.color = colors[Math.floor(Math.random() * colors.length)];
+
+  shells.push(shell);
+}
+
+function newPass(shell) {
+
+  var pasCount = Math.ceil(Math.pow(shell.size, 2) * Math.PI);
+
+  for (i = 0; i < pasCount; i++) {
+
+    var pas = {};
+    pas.x = shell.x * cwidth;
+    pas.y = shell.y * cheight;
+
+    var a = Math.random() * 4;
+    var s = Math.random() * 10;
+
+		pas.xoff = s *  Math.sin((5 - a) * (Math.PI / 2));
+  	pas.yoff = s *  Math.sin(a * (Math.PI / 2));
+
+    pas.color = shell.color;
+    pas.size = Math.sqrt(shell.size);
+
+    if (pass.length < 1000) { pass.push(pas); }
+  }
+}
+
+var lastRun = 0;
+Run();
+function Run() {
+
+  var dt = 1;
+  if (lastRun != 0) { dt = Math.min(50, (performance.now() - lastRun)); }
+	lastRun = performance.now();
+
+  //ctx.clearRect(0, 0, cwidth, cheight);
+	ctx.fillStyle = "rgba(0,0,0,0.25)";
+	ctx.fillRect(0, 0, cwidth, cheight);
+
+  if ((shells.length < 10) && (Math.random() > 0.96)) { newShell(); }
+
+  for (let ix in shells) {
+
+    var shell = shells[ix];
+
+    ctx.beginPath();
+    ctx.arc(shell.x * cwidth, shell.y * cheight, shell.size, 0, 2 * Math.PI);
+    ctx.fillStyle = shell.color;
+    ctx.fill();
+
+    shell.x -= shell.xoff;
+    shell.y -= shell.yoff;
+    shell.xoff -= (shell.xoff * dt * 0.001);
+    shell.yoff -= ((shell.yoff + 0.2) * dt * 0.00005);
+
+    if (shell.yoff < -0.005) {
+      newPass(shell);
+      shells.splice(ix, 1);
+    }
+  }
+
+  for (let ix in pass) {
+
+    var pas = pass[ix];
+
+    ctx.beginPath();
+    ctx.arc(pas.x, pas.y, pas.size, 0, 2 * Math.PI);
+    ctx.fillStyle = pas.color;
+    ctx.fill();
+
+    pas.x -= pas.xoff;
+    pas.y -= pas.yoff;
+    pas.xoff -= (pas.xoff * dt * 0.001);
+    pas.yoff -= ((pas.yoff + 5) * dt * 0.0005);
+    pas.size -= (dt * 0.002 * Math.random())
+
+    if ((pas.y > cheight)  || (pas.y < -50) || (pas.size <= 0)) {
+        pass.splice(ix, 1);
+    }
+  }
+  requestAnimationFrame(Run);
+}
+
+
+function getRandomColor() {
+  const colors = ['#FF5733', '#33FF57', '#5733FF', '#FF33E1', '#33E1FF', '#E1FF33'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function getRandomDuration() {
+  return Math.floor(Math.random() * (20000 - 7000) + 7000);
+}
+
+function getRandomSize() {
+  const size = Math.floor(Math.random() * (40 - 15) + 15); 
+  return `${size}px`;
+}
+
+function appendBubble() {
+  const motionElement = document.querySelector('.motion');
+
+  const bubble = document.createElement('span');
+  bubble.className = 'bubble';
+  const bgColor = getRandomColor();
+  bubble.style.backgroundColor = bgColor;
+  bubble.style.color = bgColor;
+  bubble.style.left = `${Math.random() * 100}%`;
+  bubble.style.animationDuration = `${getRandomDuration()}ms`;
+  bubble.style.width = getRandomSize();
+  bubble.style.height = bubble.style.width;
+
+  motionElement.appendChild(bubble);
+
+  setTimeout(() => {
+    motionElement.removeChild(bubble);
+  }, 20000); 
+}
+
+setInterval(appendBubble, 500);
+            
+        </script>
+    </body>
+</html>
