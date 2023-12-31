@@ -478,7 +478,7 @@ body {
         </div>
         <script>
 function updateCountdown() {
-    const newYear = new Date("2024-01-01T00:18:00+05:30"); // formate --> year:month:date(T)hour:min:sec+(05:30) [dont change the bracket objects] , [time in 24 hour formate and with zeros in single digits]
+    const newYear = new Date("2024-01-01T00:00:00+05:30"); // formate --> year:month:date(T)hour:min:sec+(05:30) [dont change the bracket objects] , [time in 24 hour formate and with zeros in single digits]
     const now = new Date();
     const timeDifference = newYear - now;
     if (timeDifference <= 0) {
